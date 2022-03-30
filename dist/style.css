@@ -1,8 +1,9 @@
 body {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-evenly;
 }
 
-.test {
-    margin: .5%;
+.card {
+    margin-top: 1.5%;
 }

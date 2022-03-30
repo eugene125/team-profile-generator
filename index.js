@@ -1,13 +1,17 @@
+// Setting requires
 const inquirer = require("inquirer");
-const fs = require("fs");
 const jest = require("jest");
+const fs = require("fs");
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
 
+// Creating an array that receives objects of employee types
 const teamMembers = [];
 
+// Setting an object of the employee types
 const questions = {
+    // Each employee type is asked the "employee" questions
     employee: [
         {
             type: "input",
@@ -25,6 +29,7 @@ const questions = {
             message: "What is your employee's email address?\n",
         },
     ],
+    // Each individual employee type has a sepcific prompt catered to their role
     manager: [
         {
             type: "input",
@@ -48,9 +53,11 @@ const questions = {
     ],
 };
 
+// The prompt variable triggers the questions array which begins with the employee's prompts and the manager's prompt
 const prompt = async (employeeType) => {
     let user = "";
     let userPrompt = await inquirer.prompt([...questions.employee, ...questions[employeeType]]);
+    // Once the user (manager) is finished with the prompts, their choices are then stored into the user variable
     switch(employeeType){
         case "manager":
             user = new Manager(userPrompt);
@@ -64,8 +71,10 @@ const prompt = async (employeeType) => {
         default:
             return;
     }
+    // The newly created user variables are then pushed into the teamMembers array
     teamMembers.push(user)
     
+    // The user is then prompted to add a new team member or finish building their team
     const addMember = await inquirer.prompt({
         type: "list",
         name: "choice",
@@ -82,8 +91,10 @@ const prompt = async (employeeType) => {
 
 };
 prompt("manager")
+// Once the user is has finished adding team members, the htmlFile function is called
 .then( () => fs.writeFileSync("index.html", htmlFile(teamMembers)));
 
+// When the htmlFile function is called, the data in the teamMembers array is then added into an HTML file template
 let htmlFile = (teamMembers) => (`
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +109,7 @@ let htmlFile = (teamMembers) => (`
 <body>
     
     ${teamMembers.map((member) =>(`
-    <div class="card test" style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h4 class="card-title">${member.getName()}</h4>
         <h5>Role: ${member.getRole()}</h5>
