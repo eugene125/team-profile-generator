@@ -116,7 +116,7 @@ let htmlFile = (teamMembers) => (`
         <h6 class="card-subtitle mb-2 text-muted">Employee ID: ${member.getId()}</h6>
         <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
         ${member.getGitHub != undefined 
-            ? `<p>GitHub: <a href='https://github.com' target='_blank'>${member.getGitHub()}</a></p>`
+            ? `<p>GitHub: <a href='https://github.com/${member.getGitHub()}' target='_blank'>${member.getGitHub()}</a></p>`
             : null || 
         member.getSchool != undefined 
             ? `<p>School: ${member.getSchool()}</p>` 
