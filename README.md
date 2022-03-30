@@ -21,6 +21,9 @@ There are only two things that need to be installed:
 ## Usage
 The use of this program is for a manager to simply input data on their team members and have that data added to an HTML file automatically instead of the manager creating an entire webpage manually.
 
+## Generated HTML
+![A photo of the generated HTML webpage](./assets/images/final-webpage.png)
+
 ## License
 This project is licensed under MIT License: A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
 

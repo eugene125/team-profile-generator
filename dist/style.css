@@ -2,8 +2,16 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    background-color: #adb5bd;
 }
 
 .card {
     margin-top: 1.5%;
+    background-color: antiquewhite;
+    border: 2px solid black;
+}
+
+:any-link {
+    color: rgb(137, 5, 5);
+    text-decoration: none;
 }

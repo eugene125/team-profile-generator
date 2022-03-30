@@ -58,7 +58,7 @@ const prompt = async (employeeType) => {
     let user = "";
     let userPrompt = await inquirer.prompt([...questions.employee, ...questions[employeeType]]);
     // Once the user (manager) is finished with the prompts, their choices are then stored into the user variable
-    switch(employeeType){
+    switch (employeeType) {
         case "manager":
             user = new Manager(userPrompt);
             break;
@@ -73,7 +73,7 @@ const prompt = async (employeeType) => {
     }
     // The newly created user variables are then pushed into the teamMembers array
     teamMembers.push(user)
-    
+
     // The user is then prompted to add a new team member or finish building their team
     const addMember = await inquirer.prompt({
         type: "list",
@@ -82,8 +82,7 @@ const prompt = async (employeeType) => {
         choices: ["engineer", "intern", "Finish building my team"],
     });
 
-    if (addMember.choice == "Finish building my team"){
-        console.log(teamMembers)
+    if (addMember.choice == "Finish building my team") {
         return;
     } else {
         await prompt(addMember.choice)
@@ -91,8 +90,8 @@ const prompt = async (employeeType) => {
 
 };
 prompt("manager")
-// Once the user is has finished adding team members, the htmlFile function is called
-.then( () => fs.writeFileSync("index.html", htmlFile(teamMembers)));
+    // Once the user is has finished adding team members, the htmlFile function is called
+    .then(() => fs.writeFileSync("index.html", htmlFile(teamMembers)));
 
 // When the htmlFile function is called, the data in the teamMembers array is then added into an HTML file template
 let htmlFile = (teamMembers) => (`
@@ -108,23 +107,22 @@ let htmlFile = (teamMembers) => (`
 </head>
 <body>
     
-    ${teamMembers.map((member) =>(`
+    ${teamMembers.map((member) => (`
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-        <h4 class="card-title">${member.getName()}</h4>
-        <h5>Role: ${member.getRole()}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Employee ID: ${member.getId()}</h6>
-        <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
-        ${member.getGitHub != undefined 
+            <h4 class="card-title">${member.getName()}</h4>
+            <h5>Role: ${member.getRole()}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Employee ID: ${member.getId()}</h6>
+            <p>Email: <a href="mailto:${member.getEmail()}">${member.getEmail()}</a></p>
+            ${member.getGitHub != undefined
             ? `<p>GitHub: <a href='https://github.com/${member.getGitHub()}' target='_blank'>${member.getGitHub()}</a></p>`
-            : null || 
-        member.getSchool != undefined 
-            ? `<p>School: ${member.getSchool()}</p>` 
             : null ||
-        member.getOfficeNumber != undefined 
+            member.getSchool != undefined
+            ? `<p>School: ${member.getSchool()}</p>`
+            : null ||
+            member.getOfficeNumber != undefined
             ? `<p>Office Number: ${member.getOfficeNumber()}</p>`
-            : null
-        }
+            : null}
         </div>
     </div>
     `)).join("")}
