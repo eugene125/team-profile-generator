@@ -1,42 +1,38 @@
 const Engineer = require("../lib/Engineer");
 
-test("Test instantiation of Engineer object", () => {
-    const e = new Engineer({});
-    expect(typeof(e)).toEqual("object")
+test("Instantiation of engineer instance", () => {
+    const testEngineer = new Engineer({});
+
+    expect(typeof(testEngineer)).toBe("object");
 });
-test("Test Engineer's name", () => {
-    const e = new Engineer({name: ""});
-    expect(e.name).toEqual(expect.any(String))
-});
-test("Test Engineer's id", () => {
-    const e = new Engineer({id: 1000});
-    expect(e.id).toEqual(expect.any(Number))
-});
-test("Test Engineer's email", () => {
-    const e = new Engineer({email: ""});
-    expect(e.email).toEqual(expect.any(String))
-});
-test("Test Engineer's GitHub", () => {
-    const e = new Engineer({gitHub: ""});
-    expect(e.gitHub).toEqual(expect.any(String))
-});
-test("Test getName()", () => {
-    const e = new Engineer({name: "Billy Joe"});
-    expect(e.getName()).toEqual(expect.any(String))
-});
-test("Test getId()", () => {
-    const e = new Engineer({id: 1000});
-    expect(e.getId()).toEqual(expect.any(Number))
-});
-test("Test getEmail()", () => {
-    const e = new Engineer({email: "BillyJoe@mail.com"});
-    expect(e.getEmail()).toEqual(expect.any(String))
-});
-test("Test getGitHub()", () => {
-    const e = new Engineer({gitHub: "BillyJoe1000"});
-    expect(e.getGitHub()).toEqual(expect.any(String))
-});
-test("Test getRole()", () => {
-    const e = new Engineer({});
-    expect(e.getRole()).toEqual(expect.any(String))
+
+describe("getters", ()=> {
+    const name = "Jimmy";
+    const id = 100;
+    const email = "jimmy@mail.com";
+    const gitHub = "JimmyGitHub"
+    const role = "Engineer";
+
+    const testEngineer = new Engineer({name, id, email, gitHub});
+
+    it("Returns engineer name", () => {
+        expect(testEngineer.getName()).toEqual(name)
+    });
+
+    it("Returns engineer id", () => {
+        expect(testEngineer.getId()).toEqual(id)
+    });
+
+    it("Returns engineer email", () => {
+        expect(testEngineer.getEmail()).toEqual(email)
+    });
+
+    it("Returns engineer GitHub", () => {
+        expect(testEngineer.getGitHub()).toEqual(gitHub)
+    });
+
+    it("Returns engineer role", () => {
+        expect(testEngineer.getRole()).toEqual(role)
+    });
+
 });
