@@ -30,4 +30,4 @@ Daniel Norred
 
 ## Links
 - [Project Repository](https://github.com/eugene125/team-profile-generator)
-- [Project Walkthrough Video](https://drive.google.com/file/d/1dvFgmWPNU6sdW0bI9VfZirchjBi9SFRB/view?usp=sharing)
+- [Project Walkthrough Video]()
